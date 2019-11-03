@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SmartSlides</string>
+    <string name="settings">Nova Cadeira</string>
+    <string name="ViewSlides">Ver Slides</string>
+    <string name="TakePhotos">Tirar Fotos</string>
+    <string name="word_cadeiras">Cadeiras</string>
+    <string name="word_name">Nome</string>
+    <string name="delete_cadeira">Deletar cadeira</string>
+    <string name="confirm_delete_cadeira">Tem certeza que deseja deletar a cadeira?</string>
+    <string name="delete_aula">Deletar aula</string>
+    <string name="confirm_delete_aula">Tem certeza que deseja deletar a aula?</string>
+    <string name="aulas_de">Aulas de</string>
+    <string name="tirarFotoAula">Tirar Foto</string>
+    <string name="salvarAula">Salvar</string>
+    <string name="add_cadeira">Adicionar Cadeira</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        tools:context="com.lambsoft.smartslides.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart Slides"
+        android:textSize="36sp"
+        android:id="@+id/tirar_fotos_text"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:layout_width="270dp"
+        android:layout_height="80dp"
+        android:text="@string/tirarFotoAula"
+        android:id="@+id/bTirarFotosAula"
+        android:textSize="30sp"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/tirar_fotos_text"
+        android:padding="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:onClick="onTirarFotosAulaButtonClick"
+        />
+
+    <Button
+        android:layout_width="270dp"
+        android:layout_height="80dp"
+        android:text="@string/salvarAula"
+        android:id="@+id/bSalvarAula"
+        android:textSize="30sp"
+        android:textColor="#ffffff"
+        android:padding="15dp"
+        android:layout_below="@+id/bTirarFotosAula"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:onClick="onSalvarAula"
+        />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

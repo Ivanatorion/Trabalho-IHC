@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1"
+        android:layout_marginTop="50dp"
+        >
+
+        <TextView
+            android:text="@string/word_name"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/nome_cadeira"
+            android:inputType="textCapWords"
+            />
+
+        <Button
+            android:id="@+id/baddchannelnew"
+            android:onClick="onConfirm"
+            android:text="@string/add_cadeira"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            />
+
+
+    </TableLayout>
+
+</ScrollView>
