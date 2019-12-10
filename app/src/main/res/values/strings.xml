@@ -4,7 +4,7 @@
     <string name="ViewSlides">Ver Slides</string>
     <string name="TakePhotos">Tirar Fotos</string>
     <string name="word_cadeiras">Cadeiras</string>
-    <string name="word_name">Nome</string>
+    <string name="word_name">Digite o nome da Cadeira</string>
     <string name="delete_cadeira">Deletar cadeira</string>
     <string name="confirm_delete_cadeira">Tem certeza que deseja deletar a cadeira?</string>
     <string name="delete_aula">Deletar aula</string>
@@ -13,4 +13,5 @@
     <string name="tirarFotoAula">Tirar Foto</string>
     <string name="salvarAula">Salvar</string>
     <string name="add_cadeira">Adicionar Cadeira</string>
+    <string name="nova_cadeira_hint">Digite aqui...</string>
 </resources>

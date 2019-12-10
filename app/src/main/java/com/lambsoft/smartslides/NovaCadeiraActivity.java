@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,20 +19,27 @@ public class NovaCadeiraActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nova_cadeira_screen);
 
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+
         cname = (EditText) findViewById(R.id.nome_cadeira);
     }
 
     public void onConfirm(View view){
-        ContentValues values = new ContentValues();
+        if(!cname.getText().toString().equals("")){
 
-        values.put("name", cname.getText().toString());
+            ContentValues values = new ContentValues();
 
-        DatabaseHelper helper = new DatabaseHelper(this);
-        SQLiteDatabase db = helper.getWritableDatabase();
+            values.put("name", cname.getText().toString());
 
-        db.insert("cadeira", null, values);
+            DatabaseHelper helper = new DatabaseHelper(this);
+            SQLiteDatabase db = helper.getWritableDatabase();
 
-        finish();
+            db.insert("cadeira", null, values);
+
+            helper.close();
+
+            finish();
+        }
     }
 }
 

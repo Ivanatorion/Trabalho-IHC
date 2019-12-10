@@ -36,13 +36,15 @@ public class TakePhotoCadeiraListActivity extends ListActivity implements Adapte
 
     private String[] cadeiras;
     String[] cadeiras_id;
-    int initialCount;
+    int initialCount, deleteSinceStart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         helper = new DatabaseHelper(this);
+
+        deleteSinceStart = 0;
 
         TextView tv = new TextView(getApplicationContext());
 
@@ -59,6 +61,61 @@ public class TakePhotoCadeiraListActivity extends ListActivity implements Adapte
 
         setListAdapter(new MyAdapterCadeiras(this, listarCadeiras()));
 
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View view, final int position, long arg3) {
+                if(position == 0) return true;
+                new AlertDialog.Builder(TakePhotoCadeiraListActivity.this)
+                        .setTitle(R.string.delete_cadeira)
+                        .setMessage(R.string.confirm_delete_cadeira)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteCadeira(position-1);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                return true;
+            }
+        });
+    }
+
+    private void deleteCadeira(int position){
+
+        ArrayList<String> slidesPaths = new ArrayList<String>();
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT _id, path FROM slide WHERE cadeira_id = ?", new String[] { cadeiras_id[position] });
+        cursor.moveToFirst();
+        for(int i = 0; i < cursor.getCount(); i++){
+            String path = cursor.getString(1);
+
+            slidesPaths.add(path);
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+        for(String path : slidesPaths){
+            File f = new File(path);
+            f.delete();
+        }
+
+        db = helper.getWritableDatabase();
+        db.delete("slide", "cadeira_id = ?", new String[] {cadeiras_id[position]});
+        db.delete("aula", "cadeira_id = ?", new String[] {cadeiras_id[position]});
+        db.delete("cadeira", "_id = ?", new String[] {cadeiras_id[position]});
+        deleteSinceStart++;
+        for(int i = position; i < initialCount-deleteSinceStart; i++){
+            cadeiras[i] = cadeiras[i+1];
+            cadeiras_id[i] = cadeiras_id[i+1];
+        }
+        setListAdapter(new MyAdapterCadeiras(this, listarCadeiras()));
+        getListView().invalidateViews();
 
     }
 

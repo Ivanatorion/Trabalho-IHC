@@ -14,20 +14,27 @@
             android:text="@string/word_name"
             android:textSize="25sp"
             android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:gravity="center"
             />
 
         <EditText
             android:id="@+id/nome_cadeira"
             android:inputType="textCapWords"
+            android:hint="@string/nova_cadeira_hint"
             />
 
         <Button
             android:id="@+id/baddchannelnew"
             android:onClick="onConfirm"
             android:text="@string/add_cadeira"
+            android:textSize="22sp"
+            android:textColor="#ffffff"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
+            android:background="@drawable/but_enable"
+            style="?android:attr/borderlessButtonStyle"
             />
 
 

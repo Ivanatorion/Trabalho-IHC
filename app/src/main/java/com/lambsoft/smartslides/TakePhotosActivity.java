@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -28,12 +29,18 @@ public class TakePhotosActivity extends Activity {
 
     TextView titleAula;
 
+    boolean pTaken;
+
     private DatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.take_photo_activity_layout);
+
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+
+        pTaken = false;
 
         helper = new DatabaseHelper(this);
 
@@ -102,6 +109,10 @@ public class TakePhotosActivity extends Activity {
                 db = helper.getWritableDatabase();
                 db.insert("slide", null, values);
 
+                pTaken = true;
+                salvar.setBackgroundResource(R.drawable.but_enable);
+                Toast.makeText(this, "Foto Capturada", Toast.LENGTH_SHORT).show();
+
                 File f = new File(currentPhotoPath);
                 Bitmap  b = BitmapFactory.decodeFile(currentPhotoPath);
                 Bitmap out = Bitmap.createScaledBitmap(b, 480, 270, false);
@@ -128,6 +139,6 @@ public class TakePhotosActivity extends Activity {
 
 
     public void onSalvarAula(View view){
-        finish();
+        if(pTaken) finish();
     }
 }
